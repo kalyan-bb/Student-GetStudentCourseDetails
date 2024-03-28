@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "d5f14083-cf61-4490-8d85-9667cf3ff133",
+		"name": "Fetch particular Student Course Details",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25479700"
+	},
+	"item": [
+		{
+			"name": "basicAuthLogin",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "$pw",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "$email",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"payload\": {\n    \"username\": \"$email\",\n    \"password\": \"GK$AI2024\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sisclientweb-700031.campusnexus.cloud/api/commands/Common/Staff/authenticateUserLogin",
+					"protocol": "https",
+					"host": [
+						"sisclientweb-700031",
+						"campusnexus",
+						"cloud"
+					],
+					"path": [
+						"api",
+						"commands",
+						"Common",
+						"Staff",
+						"authenticateUserLogin"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "studentGetById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "$pw",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "$email",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"payload\": {\n    \"id\": $studentGetById\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sisclientweb-700031.campusnexus.cloud/api/commands/Common/Student/get",
+					"protocol": "https",
+					"host": [
+						"sisclientweb-700031",
+						"campusnexus",
+						"cloud"
+					],
+					"path": [
+						"api",
+						"commands",
+						"Common",
+						"Student",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allStudentCourses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "$email",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "$pw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sisclientweb-700031.campusnexus.cloud/ds/campusnexus/StudentCourses",
+					"protocol": "https",
+					"host": [
+						"sisclientweb-700031",
+						"campusnexus",
+						"cloud"
+					],
+					"path": [
+						"ds",
+						"campusnexus",
+						"StudentCourses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getParticularStudentCourseDetails",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"user id\", $particularStudentId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "$pw",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "$email",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sisclientweb-700031.campusnexus.cloud/ds/campusnexus/StudentCourses({{user id}})",
+					"protocol": "https",
+					"host": [
+						"sisclientweb-700031",
+						"campusnexus",
+						"cloud"
+					],
+					"path": [
+						"ds",
+						"campusnexus",
+						"StudentCourses({{user id}})"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
